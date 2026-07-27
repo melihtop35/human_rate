@@ -1,0 +1,324 @@
+[
+  {
+    "id": "PHY",
+    "title": "Fizik ve Atletizm",
+    "items": [
+      {
+        "id": "STR",
+        "name": "Kaba Kuvvet",
+        "desc": "Ağırlık kaldırma kapasitesi, fiziksel güç ve genel bilek kuvveti."
+      },
+      {
+        "id": "STA",
+        "name": "Kondisyon & Dayanıklılık",
+        "desc": "Çabuk yorulmama, uzun süre ayakta kalma veya tempolu günleri pili bitmeden çıkarma kapasitesi."
+      },
+      {
+        "id": "AER",
+        "name": "Estetik & Bakım",
+        "desc": "Giyim tarzı, kişisel bakım, kuaför rutinleri veya genel dış görünüşüne gösterdiği özen."
+      },
+      {
+        "id": "AGI",
+        "name": "Refleks & Çeviklik",
+        "desc": "Ani gelişen olaylara fiziksel tepki verme hızı (düşen bir bardağı havada yakalamak vb.)."
+      },
+      {
+        "id": "ENG",
+        "name": "Uyku & Enerji",
+        "desc": "Güne başlama enerjisi; az uykuyla veya yorgunken bile günü yüksek tempoda geçirebilme yeteneği."
+      },
+      {
+        "id": "FLX",
+        "name": "Esneklik & Mobilite",
+        "desc": "Vücudun esneklik seviyesi, ani hareketlerde sakatlanmaya karşı direnç."
+      },
+      {
+        "id": "TOL",
+        "name": "Acı Eşiği",
+        "desc": "Fiziksel zorluklara, yorgunluğa veya ufak tefek yaralanmalara katlanma kapasitesi, tatlı canı kıymetli olmama durumu."
+      },
+      {
+        "id": "MET",
+        "name": "Metabolizma & Kilo Kontrolü",
+        "desc": "Formunu koruma, kilo alıp verme hızı veya genel vücut dengesi."
+      }
+    ]
+  },
+  {
+    "id": "SOC",
+    "title": "Sosyal ve İletişim",
+    "items": [
+      {
+        "id": "SPE",
+        "name": "Hitabet & Akıcılık",
+        "desc": "Kelime dağarcığı, kendini ifade etme, bir konuyu takılmadan ve dinleterek anlatma becerisi."
+      },
+      {
+        "id": "HUM",
+        "name": "Mizah & Espri",
+        "desc": "Ortamı güldürebilme, tam zamanında yapılan nokta atışı şakalar."
+      },
+      {
+        "id": "PER",
+        "name": "İkna & Manipülasyon",
+        "desc": "Bir fikri satabilme, üşenen bir arkadaşı dışarı çıkmaya veya bir şeyi yapmaya ikna etme gücü."
+      },
+      {
+        "id": "CHA",
+        "name": "Karizma / Aura",
+        "desc": "Ortama girildiğinde dikkat çekme, doğal karizma, duruş ve özgüven."
+      },
+      {
+        "id": "RIZ",
+        "name": "Flört & İletişim",
+        "desc": "Yeni insanlarla tanışırkenki rahatlık, çekicilik ve iletişimdeki başarı oranı."
+      },
+      {
+        "id": "EMP",
+        "name": "Empati & Dinleyicilik",
+        "desc": "Karşısındakini anlama, dert dinleme ve doğru teselliyi verme becerisi."
+      },
+      {
+        "id": "ICE",
+        "name": "Buz Kırıcı",
+        "desc": "Yabancı bir ortamda veya sessizlik anında sohbeti ilk başlatan kişi olma rahatlığı."
+      },
+      {
+        "id": "GOS",
+        "name": "Dedikodu & İstihbarat",
+        "desc": "Çevrede olup bitenlerden anında haberdar olma ve sosyal bilgi ağına sahip olma."
+      }
+    ]
+  },
+  {
+    "id": "MEN",
+    "title": "Zeka ve Mental",
+    "items": [
+      {
+        "id": "DEB",
+        "name": "Tartışma & Haklı Çıkma",
+        "desc": "Karşıt görüşleri çürütme, inatçı argümanlar sunma ve haksız olsa bile üste çıkma becerisi."
+      },
+      {
+        "id": "ANL",
+        "name": "Analitik Düşünme",
+        "desc": "Olaylara duygusal değil, mantıksal yaklaşma ve günlük problemleri pratik yollarla çözme yeteneği."
+      },
+      {
+        "id": "KNO",
+        "name": "Genel Kültür",
+        "desc": "Tarih, coğrafya, sanat veya 'bunu nereden biliyorsun' dedirten bilgi dağarcığı."
+      },
+      {
+        "id": "CRI",
+        "name": "Kriz Yönetimi",
+        "desc": "İşler ters gittiğinde panik yapmadan soğukkanlı kalabilme."
+      },
+      {
+        "id": "MEM",
+        "name": "Hafıza",
+        "desc": "Geçmişteki olayları, verilen sözleri veya ince detayları yıllar sonra bile hatırlama kapasitesi."
+      },
+      {
+        "id": "STR_MEN",
+        "name": "Stratejik Düşünme",
+        "desc": "Olayların birkaç adım sonrasını planlayabilme, satranç zihniyetiyle hareket etme."
+      },
+      {
+        "id": "OBS",
+        "name": "Gözlem Yeteneği",
+        "desc": "Ortamdaki küçük detayları, mimikleri veya insanların ruh halini hızlıca fark etme."
+      },
+      {
+        "id": "LRN",
+        "name": "Öğrenme Hızı",
+        "desc": "Yeni bir kuralı, oyunu veya beceriyi ne kadar sürede kavrayıp uygulayabildiği."
+      }
+    ]
+  },
+  {
+    "id": "LIF",
+    "title": "Yaşam Becerileri",
+    "items": [
+      {
+        "id": "DRV",
+        "name": "Şoförlük & Trafik",
+        "desc": "Direksiyon hakimiyeti, agresif veya akıcı trafiğe ayak uydurma ve seri park yeteneği."
+      },
+      {
+        "id": "DIY",
+        "name": "Pratik Zeka & Ev İşleri",
+        "desc": "Evdeki bozulan basit bir aleti tamir edebilme veya pratik çözümler üretebilme."
+      },
+      {
+        "id": "MUS",
+        "name": "Müzik Zevki",
+        "desc": "Ortamda müzik kontrolü emanet edildiğinde açtığı listenin kalitesi ve ortama uyumu."
+      },
+      {
+        "id": "CKG",
+        "name": "Mutfak & Gurmelik",
+        "desc": "Yemek yapma yeteneği veya en azından nerede ne yeneceğini çok iyi bilme."
+      },
+      {
+        "id": "NAV",
+        "name": "Yön Bulma & Organizasyon",
+        "desc": "Rota planlama, kaybolmadan adres bulma ve grubu bir araya toplama becerisi."
+      },
+      {
+        "id": "FIN",
+        "name": "Finans & Ekonomi",
+        "desc": "Para yönetimi, pazarlık yapma, fırsat kollama ve bütçesini doğru ayarlama yeteneği."
+      },
+      {
+        "id": "SRV",
+        "name": "Hayatta Kalma & Doğa",
+        "desc": "Kamp yapma, doğa yürüyüşü veya konfor alanından çıkıldığında idare edebilme."
+      },
+      {
+        "id": "DOM",
+        "name": "Ev İdaresi",
+        "desc": "Temizlik, ütü, çamaşır gibi temel ev işlerindeki beceri ve düzen."
+      }
+    ]
+  },
+  {
+    "id": "CHR",
+    "title": "Karakter ve 'Vibe'",
+    "items": [
+      {
+        "id": "TRU",
+        "name": "Güvenilirlik & Sadakat",
+        "desc": "Arkadan iş çevirmeme, sır tutma ve zor zamanda 'gel' dendiğinde orada olma garantisi."
+      },
+      {
+        "id": "PUN",
+        "name": "Dakiklik",
+        "desc": "'10 dakikaya oradayım' dediğinde gerçekten 10 dakika sonra orada olma ihtimali."
+      },
+      {
+        "id": "PAT",
+        "name": "Sabır Seviyesi",
+        "desc": "Boş muhabbete, bekletilmeye veya sinir bozucu durumlara katlanma sınırı."
+      },
+      {
+        "id": "GEN",
+        "name": "Cömertlik",
+        "desc": "Hesap öderken eli cebine gitme hızı, arkadaşlarına bir şeyler ısmarlama hevesi."
+      },
+      {
+        "id": "LUC",
+        "name": "Şans Faktörü",
+        "desc": "Hayattaki genel şans seviyesi, en kötü durumdan bile dört ayak üstüne düşme ihtimali."
+      },
+      {
+        "id": "JOY",
+        "name": "Pozitiflik & Neşe",
+        "desc": "Kötü durumlarda bile moral bozmamak, ekibin enerjisini yukarıda tutma kapasitesi."
+      },
+      {
+        "id": "BLN",
+        "name": "Dobra & Netlik",
+        "desc": "Eğip bükmeden, insanların yüzüne doğruları doğrudan ve çekinmeden söyleyebilme."
+      },
+      {
+        "id": "IND",
+        "name": "Bağımsızlık",
+        "desc": "Tek başına dışarı çıkmak, yalnız vakit geçirmek veya yalnızken de mutlu olabilme seviyesi."
+      }
+    ]
+  },
+  {
+    "id": "ENT",
+    "title": "Eğlence ve Aktiviteler",
+    "items": [
+      {
+        "id": "CMP",
+        "name": "Rekabetçilik & Hırs",
+        "desc": "Masa oyunu, halı saha veya herhangi bir iddiada kazanma hırsı ve kaybetmeyi sevmeme durumu."
+      },
+      {
+        "id": "MED",
+        "name": "Popüler Kültür & Medya",
+        "desc": "Film, dizi, sinema evrenlerine veya genel kültür trendlerine olan hakimiyet."
+      },
+      {
+        "id": "SBA",
+        "name": "Sosyal Batarya",
+        "desc": "İnsanlarla bir arada kalma, dışarıda vakit geçirme veya kalabalık etkinliklerde enerjisi tükenmeden aktif kalabilme kapasitesi."
+      },
+      {
+        "id": "FOC",
+        "name": "Odaklanma & Dikkat",
+        "desc": "Gürültülü bir ortamda bile yaptığı işe veya izlediği şeye dış dünyayı kapatıp odaklanabilme."
+      },
+      {
+        "id": "FUN",
+        "name": "Eğlenceye Katkı",
+        "desc": "Bulunulan ortamda keyifli anlara ortak olma, şakalaşmalara uyum sağlama ve grubun genel enerjisini yukarı çekme potansiyeli."
+      },
+      {
+        "id": "EMO",
+        "name": "Duygusal Kontrol",
+        "desc": "Zorlayıcı, sinir bozucu veya beklenmedik sürprizlerle karşılaşıldığında öfkeyi yönetebilme, fevri davranmama ve mantıklı kalabilme kapasitesi."
+      },
+      {
+        "id": "LDR",
+        "name": "Grup Liderliği",
+        "desc": "Etkinliklerde takım kaptanlığı yapma, inisiyatif alma ve ekibi yönlendirme yeteneği."
+      },
+      {
+        "id": "ADP",
+        "name": "Uyum & Adaptasyon",
+        "desc": "Yeni mekanlara, farklı arkadaş gruplarına veya aniden değişen planlara ayak uydurma hızı."
+      }
+    ]
+  },
+  {
+    "id": "PRO",
+    "title": "İş ve Kariyer",
+    "items": [
+      {
+        "id": "DEV",
+        "name": "Gelişim Odaklılık",
+        "desc": "Kendini yenileme, yapıcı eleştirilerden ders çıkarma ve kişisel kapasitesini sürekli bir adım ileri taşıma hevesi."
+      },
+      {
+        "id": "EXE",
+        "name": "İş Bitiricilik & İcraat",
+        "desc": "Konuşulan bir planı veya verilen bir görevi mazeret üretmeden, sürüncemede bırakmadan doğrudan sonuca ulaştırma becerisi."
+      },
+      {
+        "id": "TME",
+        "name": "Zaman Yönetimi",
+        "desc": "Kendi vaktini ve başkalarının vaktini doğru kullanma, sorumlulukları son dakikaya bırakmadan, kriz yaratmadan halledebilme becerisi."
+      },
+      {
+        "id": "NET",
+        "name": "Çevre & İletişim",
+        "desc": "İş veya okul hayatında 'tanıdığı olan' kişi olma, doğru insanlarla bağ kurabilme."
+      },
+      {
+        "id": "CRE",
+        "name": "Yaratıcılık & Çözüm",
+        "desc": "Sorunlara alışılmışın dışında alternatif çözümler üretme kapasitesi."
+      },
+      {
+        "id": "PRE",
+        "name": "Sunum & Temsil",
+        "desc": "Resmi, ciddi ortamlarda (mülakat, toplantı, aile tanışması) kendini en iyi şekilde pazarlayabilme."
+      },
+      {
+        "id": "ETH",
+        "name": "Sorumluluk Bilinci",
+        "desc": "Verilen bir görevi veya işi baştan savma yapmadan hakkını vererek tamamlama güdüsü."
+      },
+      {
+        "id": "AUT",
+        "name": "Kriz & Otorite Yönetimi",
+        "desc": "Yönetici, hoca veya üstlerle iyi geçinme, onlarla olan potansiyel krizleri idare edebilme."
+      }
+    ]
+  }
+]
