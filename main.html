@@ -3,12 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>İnsan FC Kartı Jeneratörü</title>
+    <title>İnsan Kartı Jeneratörü</title>
     <style>
       :root {
         --bg-color: #121212;
         --card-bg: #1e1e1e;
         --primary: #d4af37;
+        --badge-text: #000;
         --text-light: #f5f5f5;
         --text-muted: #a0a0a0;
         --border-radius: 12px;
@@ -39,6 +40,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        transition: border-color 0.3s ease;
       }
 
       .header-title {
@@ -49,12 +51,13 @@
 
       .ovr-badge {
         background: var(--primary);
-        color: #000;
+        color: var(--badge-text);
         padding: 10px 20px;
         border-radius: 8px;
         font-size: 1.5rem;
         font-weight: 900;
-        box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        transition: all 0.3s ease;
       }
 
       .container {
@@ -84,11 +87,14 @@
         font-size: 1.1rem;
         font-weight: bold;
         color: var(--primary);
+        transition: color 0.3s ease;
       }
 
       .category-score {
         font-size: 1.3rem;
-        font-weight: 800;
+        font-weight: 900;
+        color: var(--primary);
+        transition: color 0.3s ease;
       }
 
       .stat-item {
@@ -135,7 +141,7 @@
       .stat-input:focus {
         outline: none;
         border-color: var(--primary);
-        box-shadow: 0 0 5px rgba(212, 175, 55, 0.5);
+        box-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
       }
 
       input[type="number"]::-webkit-inner-spin-button,
@@ -153,7 +159,6 @@
         color: var(--text-muted);
       }
 
-      /* Kart Jeneratörü Özel Stilleri */
       .canvas-container {
         position: relative;
         width: 300px;
@@ -161,7 +166,6 @@
         margin: 20px auto;
         border-radius: 15px;
         overflow: hidden;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
       }
 
       #cardCanvas {
@@ -172,7 +176,7 @@
 
       .btn-download {
         background: var(--primary);
-        color: #000;
+        color: var(--badge-text);
         border: none;
         padding: 12px 25px;
         border-radius: 8px;
@@ -181,6 +185,7 @@
         cursor: pointer;
         width: 100%;
         margin-top: 10px;
+        transition: all 0.3s ease;
       }
 
       .file-input-wrapper {
@@ -190,15 +195,14 @@
   </head>
   <body>
     <header>
-      <div class="header-title">İnsan FC Statları</div>
+      <div class="header-title">İnsan Statları</div>
       <div class="ovr-badge">OVR <span id="main-ovr">0</span></div>
     </header>
 
     <div class="container">
-      <!-- Kart Jeneratörü Arayüzü -->
       <div class="category-card">
         <div class="category-header">
-          <div class="category-title">FC Kartı Oluşturucu</div>
+          <div class="category-title">Kart Oluşturucu</div>
         </div>
         <div style="padding: 15px; text-align: center">
           <input
@@ -217,8 +221,9 @@
                 color: var(--text-muted);
                 font-size: 0.9rem;
               "
-              >Fotoğraf Çek / Yükle:</label
             >
+              Fotoğraf Çek / Yükle:
+            </label>
             <input
               type="file"
               id="playerImage"
@@ -238,7 +243,6 @@
         </div>
       </div>
 
-      <!-- Statların Yükleneceği Alan -->
       <div id="app">
         <div class="loading-text">Veriler yükleniyor...</div>
       </div>
@@ -248,8 +252,8 @@
       let statsData = [];
       const appContainer = document.getElementById("app");
 
-      // İndirilen gerçek fut.gg kartları (ratings/ klasöründen, yerel)
       const cardBgUrls = {
+        broken: "ratings/0_broken.png",
         bronzeNormal: "ratings/0_bronze.png",
         bronzeRare: "ratings/1_bronze.png",
         silverNormal: "ratings/0_silver.png",
@@ -262,23 +266,37 @@
         futties: "ratings/16_futties.png",
       };
 
-      // OVR (1-100) değerine göre hangi kart görselinin kullanılacağını belirler
+      // 100 üzerinden daha dengeli dağılım
       function cardKeyForOvr(ovr) {
-        if (ovr >= 98) return "futties";
-        if (ovr >= 94) return "toty";
-        if (ovr >= 90) return "icon";
+        if (ovr >= 97) return "futties";
+        if (ovr >= 93) return "toty";
+        if (ovr >= 89) return "icon";
         if (ovr >= 85) return "heroes";
-        if (ovr >= 82) return "goldRare";
+        if (ovr >= 80) return "goldRare";
         if (ovr >= 75) return "goldNormal";
         if (ovr >= 70) return "silverRare";
         if (ovr >= 65) return "silverNormal";
-        if (ovr >= 59) return "bronzeRare";
-        return "bronzeNormal";
+        if (ovr >= 55) return "bronzeRare";
+        if (ovr >= 40) return "bronzeNormal";
+        return "broken";
+      }
+
+      function getTierTheme(ovr) {
+        if (ovr >= 97) return { bg: "#fd79a8", text: "#000" };
+        if (ovr >= 93) return { bg: "#0984e3", text: "#fff" };
+        if (ovr >= 89) return { bg: "#f1f2f6", text: "#000" };
+        if (ovr >= 85) return { bg: "#8e44ad", text: "#fff" };
+        if (ovr >= 80) return { bg: "#d4af37", text: "#000" };
+        if (ovr >= 75) return { bg: "#cda434", text: "#000" };
+        if (ovr >= 70) return { bg: "#e3e3e3", text: "#000" };
+        if (ovr >= 65) return { bg: "#bcc6cc", text: "#000" };
+        if (ovr >= 55) return { bg: "#b08d57", text: "#fff" };
+        if (ovr >= 40) return { bg: "#cd7f32", text: "#fff" };
+        return { bg: "#4a3c31", text: "#fff" };
       }
 
       let uploadedImage = null;
 
-      // Fotoğraf yükleme dinleyicisi
       document
         .getElementById("playerImage")
         .addEventListener("change", function (e) {
@@ -297,12 +315,10 @@
           }
         });
 
-      // İsim girişini anlık karta yansıtma
       document
         .getElementById("playerName")
         .addEventListener("input", renderCard);
 
-      // JSON Çekme
       fetch("data.json")
         .then((response) => {
           if (!response.ok) throw new Error("JSON dosyası yüklenemedi.");
@@ -312,7 +328,7 @@
           statsData = data;
           appContainer.innerHTML = "";
           renderApp();
-          renderCard(); // İlk yüklemede boş kartı çiz
+          renderCard();
         })
         .catch((error) => {
           appContainer.innerHTML = `<div class="loading-text" style="color: #ff4444;">Hata: data.json dosyası okunamadı.</div>`;
@@ -352,7 +368,7 @@
         document.querySelectorAll(".stat-input").forEach((input) => {
           input.addEventListener("input", () => {
             calculateScores();
-            renderCard(); // Puan değiştikçe kartı tekrar oluştur
+            renderCard();
           });
           input.addEventListener("blur", function () {
             let val = parseFloat(this.value);
@@ -395,9 +411,12 @@
         }
 
         document.getElementById("main-ovr").innerText = finalOvr;
+
+        const theme = getTierTheme(finalOvr);
+        document.documentElement.style.setProperty("--primary", theme.bg);
+        document.documentElement.style.setProperty("--badge-text", theme.text);
       }
 
-      // Kart Render Motoru
       const CARD_W = 644;
       const CARD_H = 894;
 
@@ -407,18 +426,16 @@
         const ovr =
           parseInt(document.getElementById("main-ovr").innerText) || 0;
 
-        // OVR değerine göre Kart Klasmanı Belirleme
         const bgType = cardKeyForOvr(ovr);
-
         const bgImg = new Image();
 
         bgImg.onload = function () {
           ctx.clearRect(0, 0, CARD_W, CARD_H);
 
-          // 1) ÖNCE KARTIN KENDİ TASARIMINI ÇİZ (Arka plan olarak)
+          // 1) Kart Arka Planı
           ctx.drawImage(bgImg, 0, 0, CARD_W, CARD_H);
 
-          // 2) SONRA FOTOĞRAFI ÜZERİNE ÇİZ (Daire maskeyle)
+          // 2) Fotoğraf Maskesi
           if (uploadedImage) {
             const photoCx = CARD_W * 0.5;
             const photoCy = CARD_H * 0.315;
@@ -430,7 +447,6 @@
             ctx.closePath();
             ctx.clip();
 
-            // Fotoğrafı kırpma alanını tam kaplayacak şekilde ölçekle
             const imgRatio = uploadedImage.width / uploadedImage.height;
             let drawW = photoR * 2;
             let drawH = photoR * 2;
@@ -449,30 +465,35 @@
             ctx.restore();
           }
 
-          // 3) Kart tipine göre normal yazı rengi
-          const lightTextCards = ["toty", "icon", "heroes", "futties"];
-          let textColor = "#1a1a1a";
-          if (lightTextCards.includes(bgType)) textColor = "#f5f5f5";
-          if (bgType === "goldNormal" || bgType === "goldRare")
-            textColor = "#4a3c10";
-          ctx.fillStyle = textColor;
-
-          // 4) OVR — DİNAMİK INVERT EFEKTİ
+          // 3) İSİM, STATLAR VE OVR İÇİN ORTAK SABİT RENK (INVERT KALDIRILDI)
           ctx.save();
-          // Beyaz dolgu ve difference modu sayesinde arka planın tam zıttı renk oluşur
-          ctx.fillStyle = "#FFFFFF";
-          ctx.globalCompositeOperation = "difference";
+
+          // Kart tipine göre salt Siyah veya Beyaz renk seçimi
+          const lightTextCards = ["toty", "icon", "heroes", "futties"];
+          let normalTextColor = "#1a1a1a"; // Varsayılan: Siyaha yakın çok koyu gri
+          if (lightTextCards.includes(bgType)) normalTextColor = "#FFFFFF"; // Koyu kartlarda Beyaz
+          if (bgType === "broken") normalTextColor = "#2a1c14"; // Çöp karta özel pas rengi
+
+          ctx.fillStyle = normalTextColor;
+          ctx.strokeStyle = normalTextColor;
+
+          // Dinamik Gölge Uygulaması
+          if (normalTextColor === "#FFFFFF") {
+            ctx.shadowColor = "rgba(0, 0, 0, 0.7)"; // Beyaz yazıya siyah gölge
+          } else {
+            ctx.shadowColor = "rgba(255, 255, 255, 0.6)"; // Siyah/Koyu yazıya parlak gölge
+          }
+          ctx.shadowBlur = 4;
+          ctx.shadowOffsetX = 1.5;
+          ctx.shadowOffsetY = 1.5;
+
+          // OVR Çizimi
           ctx.textAlign = "left";
           ctx.textBaseline = "alphabetic";
           ctx.font = `bold ${Math.round(CARD_W * 0.12)}px 'Segoe UI'`;
           ctx.fillText(String(ovr), CARD_W * 0.12, CARD_H * 0.275);
-          ctx.restore();
 
-          // 5) Pozisyon — OVR'ın hemen altında
-          ctx.font = `bold ${Math.round(CARD_W * 0.05)}px 'Segoe UI'`;
-          ctx.fillText("", CARD_W * 0.12, CARD_H * 0.2);
-
-          // 6) İsim — fotoğrafın altındaki ayraç çizgisinin hemen üstü, ortalı
+          // İsim Çizimi
           const pName = document.getElementById("playerName").value || "OYUNCU";
           ctx.textAlign = "center";
           let nameFontSize = Math.round(CARD_W * 0.062);
@@ -487,21 +508,27 @@
           }
           ctx.fillText(pName.toUpperCase(), CARD_W * 0.5, CARD_H * 0.592);
 
-          // 7) İnce ayraç çizgisi
-          ctx.save();
+          // İnce Ayraç Çizgisi (Çizgide gölge kapatılıp açılıyor ki bulanık durmasın)
+          ctx.shadowColor = "transparent";
           ctx.globalAlpha = 0.35;
-          ctx.strokeStyle = textColor;
           ctx.lineWidth = 2;
           ctx.beginPath();
           ctx.moveTo(CARD_W * 0.18, CARD_H * 0.625);
           ctx.lineTo(CARD_W * 0.82, CARD_H * 0.625);
           ctx.stroke();
-          ctx.restore();
+          ctx.globalAlpha = 1.0;
 
-          // 8) Statlar
+          if (normalTextColor === "#FFFFFF") {
+            ctx.shadowColor = "rgba(0, 0, 0, 0.7)";
+          } else {
+            ctx.shadowColor = "rgba(255, 255, 255, 0.6)";
+          }
+
+          // Statların Çizimi
           const statFontSize = Math.round(CARD_W * 0.065);
           ctx.font = `bold ${statFontSize}px 'Segoe UI'`;
           ctx.textAlign = "center";
+          ctx.textBaseline = "middle";
 
           const catScores = [];
           if (statsData.length > 0) {
@@ -514,11 +541,9 @@
 
             const leftValueX = CARD_W * 0.205;
             const leftLabelX = CARD_W * 0.275;
-
             const rightValueX = CARD_W * 0.585;
             const rightLabelX = CARD_W * 0.655;
             const rowYs = [CARD_H * 0.682, CARD_H * 0.736, CARD_H * 0.79];
-            ctx.textBaseline = "middle";
 
             for (let i = 0; i < 3; i++) {
               if (catScores[i]) {
@@ -527,7 +552,6 @@
                 ctx.textAlign = "left";
                 ctx.fillText(catScores[i].id, leftLabelX, rowYs[i]);
               }
-
               if (catScores[i + 3]) {
                 ctx.textAlign = "right";
                 ctx.fillText(
@@ -540,6 +564,8 @@
               }
             }
           }
+
+          ctx.restore();
         };
 
         bgImg.onerror = function () {
@@ -551,11 +577,6 @@
           ctx.fillText("Görsel bulunamadı:", CARD_W / 2, CARD_H * 0.45);
           ctx.font = "18px Arial";
           ctx.fillText(cardBgUrls[bgType], CARD_W / 2, CARD_H * 0.48);
-          ctx.fillText(
-            "ratings/ klasörünü kontrol et.",
-            CARD_W / 2,
-            CARD_H * 0.51,
-          );
         };
 
         bgImg.src = cardBgUrls[bgType];
@@ -566,12 +587,12 @@
         try {
           const dataUrl = canvas.toDataURL("image/png");
           const link = document.createElement("a");
-          link.download = "fc_karti.png";
+          link.download = "insan_karti.png";
           link.href = dataUrl;
           link.click();
         } catch (e) {
           alert(
-            "İndirme başarısız oldu. ratings/ klasöründeki görsellerin bu HTML dosyasıyla aynı sunucudan (local server) servis edildiğinden emin ol — dosya:// ile doğrudan açmak sorun çıkarabilir.",
+            "İndirme başarısız oldu. ratings/ klasöründeki görsellerin sunucudan servis edildiğinden emin olun.",
           );
         }
       }
