@@ -228,7 +228,6 @@
               type="file"
               id="playerImage"
               accept="image/*"
-              capture="user"
               style="color: #fff; width: 100%"
             />
           </div>
@@ -524,45 +523,58 @@
             ctx.shadowColor = "rgba(255, 255, 255, 0.6)";
           }
 
-          // Statların Çizimi
-          const statFontSize = Math.round(CARD_W * 0.065);
-          ctx.font = `bold ${statFontSize}px 'Segoe UI'`;
-          ctx.textAlign = "center";
-          ctx.textBaseline = "middle";
-
-          const catScores = [];
+          // Statların Çizimi (Dinamik Kategori Düzeni)
           if (statsData.length > 0) {
-            statsData.forEach((cat) => {
-              const score = document.getElementById(`score-${cat.id}`)
-                ? document.getElementById(`score-${cat.id}`).innerText
-                : "0";
-              catScores.push({ id: cat.id, score: score });
+            const catScores = statsData.map((cat) => {
+              const scoreElem = document.getElementById(`score-${cat.id}`);
+              return {
+                id: cat.id,
+                score: scoreElem ? scoreElem.innerText : "0",
+              };
             });
 
-            const leftValueX = CARD_W * 0.205;
-            const leftLabelX = CARD_W * 0.275;
-            const rightValueX = CARD_W * 0.585;
-            const rightLabelX = CARD_W * 0.655;
-            const rowYs = [CARD_H * 0.682, CARD_H * 0.736, CARD_H * 0.79];
+            const numCats = catScores.length;
+            const numCols = numCats > 10 ? 3 : 2;
+            const itemsPerCol = Math.ceil(numCats / numCols);
+            const numRows = itemsPerCol;
 
-            for (let i = 0; i < 3; i++) {
-              if (catScores[i]) {
-                ctx.textAlign = "right";
-                ctx.fillText(String(catScores[i].score), leftValueX, rowYs[i]);
-                ctx.textAlign = "left";
-                ctx.fillText(catScores[i].id, leftLabelX, rowYs[i]);
+            // Dinamik Y aralığı ve font boyutu
+            const startY = CARD_H * 0.655;
+            const endY = CARD_H * 0.835;
+
+            let statFontSize = Math.round(CARD_W * 0.062);
+            if (numRows === 4) statFontSize = Math.round(CARD_W * 0.052);
+            else if (numRows === 5) statFontSize = Math.round(CARD_W * 0.044);
+            else if (numRows >= 6) statFontSize = Math.round(CARD_W * 0.036);
+
+            ctx.font = `bold ${statFontSize}px 'Segoe UI'`;
+            ctx.textBaseline = "middle";
+
+            const rowStep = numRows > 1 ? (endY - startY) / (numRows - 1) : 0;
+
+            catScores.forEach((catItem, i) => {
+              const col = Math.floor(i / itemsPerCol);
+              const row = i % itemsPerCol;
+
+              const currentY =
+                numRows === 1 ? (startY + endY) / 2 : startY + row * rowStep;
+
+              let scoreX, labelX;
+              if (numCols === 2) {
+                const colCenterX = col === 0 ? 0.24 : 0.61;
+                scoreX = CARD_W * (colCenterX - 0.035);
+                labelX = CARD_W * (colCenterX + 0.025);
+              } else {
+                const colCenterX = 0.165 + col * 0.28;
+                scoreX = CARD_W * (colCenterX - 0.025);
+                labelX = CARD_W * (colCenterX + 0.02);
               }
-              if (catScores[i + 3]) {
-                ctx.textAlign = "right";
-                ctx.fillText(
-                  String(catScores[i + 3].score),
-                  rightValueX,
-                  rowYs[i],
-                );
-                ctx.textAlign = "left";
-                ctx.fillText(catScores[i + 3].id, rightLabelX, rowYs[i]);
-              }
-            }
+
+              ctx.textAlign = "right";
+              ctx.fillText(String(catItem.score), scoreX, currentY);
+              ctx.textAlign = "left";
+              ctx.fillText(catItem.id, labelX, currentY);
+            });
           }
 
           ctx.restore();
